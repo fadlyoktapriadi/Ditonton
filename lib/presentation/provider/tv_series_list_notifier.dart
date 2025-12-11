@@ -4,7 +4,9 @@ import 'package:ditonton/domain/usecases/get_now_playing_movies.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/usecases/get_now_playing_tv_series.dart';
 import 'package:ditonton/domain/usecases/get_popular_movies.dart';
+import 'package:ditonton/domain/usecases/get_popular_tv_series.dart';
 import 'package:ditonton/domain/usecases/get_top_rated_movies.dart';
+import 'package:ditonton/domain/usecases/get_top_rated_tv_series.dart';
 import 'package:flutter/material.dart';
 
 class TvSeriesListNotifier extends ChangeNotifier {
@@ -14,30 +16,30 @@ class TvSeriesListNotifier extends ChangeNotifier {
   RequestState _nowPlayingState = RequestState.Empty;
   RequestState get nowPlayingState => _nowPlayingState;
 
-  var _popularTvSeries = <Movie>[];
-  List<Movie> get popularMovies => _popularTvSeries;
+  var _popularTvSeries = <TvSeries>[];
+  List<TvSeries> get popularTvSeries => _popularTvSeries;
 
   RequestState _popularTvSeriesState = RequestState.Empty;
-  RequestState get popularMoviesState => _popularTvSeriesState;
+  RequestState get popularTvSeriesState => _popularTvSeriesState;
 
-  var _topRatedTvSeries = <Movie>[];
-  List<Movie> get topRatedMovies => _topRatedTvSeries;
+  var _topRatedTvSeries = <TvSeries>[];
+  List<TvSeries> get topRatedTvSeries => _topRatedTvSeries;
 
   RequestState _topRatedTvSeriesState = RequestState.Empty;
-  RequestState get topRatedMoviesState => _topRatedTvSeriesState;
+  RequestState get topRatedTvSeriesState => _topRatedTvSeriesState;
 
   String _message = '';
   String get message => _message;
 
   TvSeriesListNotifier({
     required this.getNowPlayingTvSeries,
-    required this.getPopularMovies,
-    required this.getTopRatedMovies,
+    required this.getPopularTvSeries,
+    required this.getTopRatedTvSeries,
   });
 
   final GetNowPlayingTvSeries getNowPlayingTvSeries;
-  final GetPopularMovies getPopularMovies;
-  final GetTopRatedMovies getTopRatedMovies;
+  final GetPopularTvSeries getPopularTvSeries;
+  final GetTopRatedTvSeries getTopRatedTvSeries;
 
   Future<void> fetchNowPlayingTvSeries() async {
     _nowPlayingState = RequestState.Loading;
@@ -62,7 +64,7 @@ class TvSeriesListNotifier extends ChangeNotifier {
     _popularTvSeriesState = RequestState.Loading;
     notifyListeners();
 
-    final result = await getPopularMovies.execute();
+    final result = await getPopularTvSeries.execute();
     result.fold(
       (failure) {
         _popularTvSeriesState = RequestState.Error;
@@ -81,7 +83,7 @@ class TvSeriesListNotifier extends ChangeNotifier {
     _topRatedTvSeriesState = RequestState.Loading;
     notifyListeners();
 
-    final result = await getTopRatedMovies.execute();
+    final result = await getTopRatedTvSeries.execute();
     result.fold(
       (failure) {
         _topRatedTvSeriesState = RequestState.Error;
