@@ -35,7 +35,7 @@ class TvSeries extends Equatable {
   String? overview;
   double? popularity;
   String? posterPath;
-  DateTime? firstAirDate;
+  String? firstAirDate;
   String? name;
   double? voteAverage;
   int? voteCount;

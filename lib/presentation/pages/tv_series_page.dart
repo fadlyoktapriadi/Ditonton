@@ -7,6 +7,7 @@ import 'package:ditonton/presentation/pages/now_playing_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/popular_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_tv_series_page.dart';
+import 'package:ditonton/presentation/pages/tv_series_detail_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/presentation/provider/tv_series_list_notifier.dart';
@@ -194,7 +195,7 @@ class MovieList extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                   context,
-                  MovieDetailPage.ROUTE_NAME,
+                  TvSeriesDetailPage.ROUTE_NAME,
                   arguments: series.id,
                 );
               },
