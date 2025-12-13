@@ -6,6 +6,7 @@ import 'package:ditonton/presentation/pages/movie_detail_page.dart';
 import 'package:ditonton/presentation/pages/now_playing_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/popular_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
+import 'package:ditonton/presentation/pages/search_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/tv_series_detail_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
@@ -84,7 +85,7 @@ class _TvSeriesPageState extends State<TvSeriesPage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
+              Navigator.pushNamed(context, SearchTvSeriesPage.ROUTE_NAME);
             },
             icon: Icon(Icons.search),
           )
@@ -108,7 +109,7 @@ class _TvSeriesPageState extends State<TvSeriesPage> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
-                  return MovieList(data.nowPlayingTvSeries);
+                  return TvSeriesList(data.nowPlayingTvSeries);
                 } else {
                   return Text('Failed');
                 }
@@ -125,7 +126,7 @@ class _TvSeriesPageState extends State<TvSeriesPage> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
-                  return MovieList(data.popularTvSeries);
+                  return TvSeriesList(data.popularTvSeries);
                 } else {
                   return Text('Failed');
                 }
@@ -142,7 +143,7 @@ class _TvSeriesPageState extends State<TvSeriesPage> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.Loaded) {
-                  return MovieList(data.topRatedTvSeries);
+                  return TvSeriesList(data.topRatedTvSeries);
                 } else {
                   return Text('Failed');
                 }
@@ -176,10 +177,10 @@ class _TvSeriesPageState extends State<TvSeriesPage> {
   }
 }
 
-class MovieList extends StatelessWidget {
+class TvSeriesList extends StatelessWidget {
   final List<TvSeries> tvSeries;
 
-  MovieList(this.tvSeries);
+  TvSeriesList(this.tvSeries);
 
   @override
   Widget build(BuildContext context) {
