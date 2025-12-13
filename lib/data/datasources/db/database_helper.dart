@@ -61,7 +61,7 @@ class DatabaseHelper {
     final db = await database;
     return await db!.delete(
       _tblWatchlist,
-      where: 'id_series = ?',
+      where: 'id = ?',
       whereArgs: [movie.id],
     );
   }
@@ -70,7 +70,7 @@ class DatabaseHelper {
     final db = await database;
     final results = await db!.query(
       _tblWatchlist,
-      where: 'id_series = ?',
+      where: 'id = ?',
       whereArgs: [id],
     );
 
