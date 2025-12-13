@@ -22,7 +22,7 @@ class TvSeries extends Equatable {
     required this.id,
     required this.overview,
     required this.posterPath,
-    required this.originalName,
+    required this.name,
   });
 
   bool? adult;
