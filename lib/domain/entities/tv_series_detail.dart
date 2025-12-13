@@ -7,7 +7,6 @@ class TvSeriesDetail extends Equatable {
     required this.backdropPath,
     required this.genres,
     required this.id,
-    required this.originalName,
     required this.name,
     required this.overview,
     required this.posterPath,
@@ -23,7 +22,6 @@ class TvSeriesDetail extends Equatable {
   final String? backdropPath;
   final List<Genre> genres;
   final int id;
-  final String originalName;
   final String name;
   final String overview;
   final String posterPath;
@@ -45,7 +43,6 @@ class TvSeriesDetail extends Equatable {
     backdropPath,
     genres,
     id,
-    originalName,
     name,
     overview,
     posterPath,

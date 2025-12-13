@@ -1,7 +1,9 @@
 import 'package:ditonton/data/models/movie_table.dart';
+import 'package:ditonton/data/models/tv_series_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/domain/entities/tv_series.dart';
 
 final testMovie = Movie(
   adult: false,
@@ -57,3 +59,18 @@ final testMovieMap = {
   'posterPath': 'posterPath',
   'title': 'title',
 };
+
+final testTvSeriesTable = TvSeriesTable(
+  id: 1,
+  name: 'name',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
+final testTvSeriesMap = {
+  'id_series': 1,
+  'overview': 'overview',
+  'posterPath': 'posterPath',
+  'name': 'name',
+};
+

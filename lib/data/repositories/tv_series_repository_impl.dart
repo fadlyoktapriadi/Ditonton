@@ -117,7 +117,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
 
   @override
   Future<bool> isAddedToWatchlist(int id) async {
-    final result = await localDataSource.getTvSeriesMovieById(id);
+    final result = await localDataSource.getTvSeriesById(id);
     return result != null;
   }
 
