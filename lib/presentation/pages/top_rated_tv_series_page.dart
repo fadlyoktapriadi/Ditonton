@@ -16,7 +16,7 @@ class _TopRatedTvSeriesPageState extends State<TopRatedTvSeriesPage> {
   void initState() {
     super.initState();
     Future.microtask(() =>
-        Provider.of<TopRatedTvSeriesNotifier>(context, listen: false)
+        Provider.of<TopRatedTVSeriesNotifier>(context, listen: false)
             .fetchTopRatedTvSeries());
   }
 
@@ -28,7 +28,7 @@ class _TopRatedTvSeriesPageState extends State<TopRatedTvSeriesPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<TopRatedTvSeriesNotifier>(
+        child: Consumer<TopRatedTVSeriesNotifier>(
           builder: (context, data, child) {
             if (data.state == RequestState.Loading) {
               return Center(

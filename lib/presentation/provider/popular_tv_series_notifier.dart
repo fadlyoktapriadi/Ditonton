@@ -3,16 +3,16 @@ import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:ditonton/domain/usecases/get_popular_tv_series.dart';
 import 'package:flutter/foundation.dart';
 
-class PopularTvSeriesNotifier extends ChangeNotifier {
+class PopularTVSeriesNotifier extends ChangeNotifier {
   final GetPopularTvSeries getPopularTvSeries;
 
-  PopularTvSeriesNotifier({required this.getPopularTvSeries});
+  PopularTVSeriesNotifier({required this.getPopularTvSeries});
 
   RequestState _state = RequestState.Empty;
   RequestState get state => _state;
 
-  List<TvSeries> _tvSeries = [];
-  List<TvSeries> get tvSeries => _tvSeries;
+  List<TVSeries> _tvSeries = [];
+  List<TVSeries> get tvSeries => _tvSeries;
 
   String _message = '';
   String get message => _message;

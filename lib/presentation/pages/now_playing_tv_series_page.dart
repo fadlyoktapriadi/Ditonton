@@ -4,19 +4,19 @@ import 'package:ditonton/presentation/widgets/tv_series_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class NowPlayingTvSeriesPage extends StatefulWidget {
+class NowPlayingTVSeriesPage extends StatefulWidget {
   static const ROUTE_NAME = '/now-playing-tv-series';
 
   @override
-  _NowPlayingTvSeriesPageState createState() => _NowPlayingTvSeriesPageState();
+  _NowPlayingTVSeriesPageState createState() => _NowPlayingTVSeriesPageState();
 }
 
-class _NowPlayingTvSeriesPageState extends State<NowPlayingTvSeriesPage> {
+class _NowPlayingTVSeriesPageState extends State<NowPlayingTVSeriesPage> {
   @override
   void initState() {
     super.initState();
     Future.microtask(() =>
-        Provider.of<NowPlayingTvSeriesNotifier>(context, listen: false)
+        Provider.of<NowPlayingTVSeriesNotifier>(context, listen: false)
             .fetchNowPlayingTvSeries());
   }
 
@@ -28,7 +28,7 @@ class _NowPlayingTvSeriesPageState extends State<NowPlayingTvSeriesPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<NowPlayingTvSeriesNotifier>(
+        child: Consumer<NowPlayingTVSeriesNotifier>(
           builder: (context, data, child) {
             if (data.state == RequestState.Loading) {
               return Center(

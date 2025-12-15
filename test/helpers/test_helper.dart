@@ -12,9 +12,9 @@ import 'package:http/http.dart' as http;
   MovieRepository,
   MovieRemoteDataSource,
   MovieLocalDataSource,
-  TvSeriesRepository,
-  TvSeriesLocalDataSource,
-  TvSeriesRemoteDataSource,
+  TVSeriesRepository,
+  TVSeriesLocalDataSource,
+  TVSeriesRemoteDataSource,
   DatabaseHelper,
 ], customMocks: [
   MockSpec<http.Client>(as: #MockHttpClient)

@@ -11,8 +11,8 @@ class TvSeriesSearchNotifier extends ChangeNotifier {
   RequestState _state = RequestState.Empty;
   RequestState get state => _state;
 
-  List<TvSeries> _searchResult = [];
-  List<TvSeries> get searchResult => _searchResult;
+  List<TVSeries> _searchResult = [];
+  List<TVSeries> get searchResult => _searchResult;
 
   String _message = '';
   String get message => _message;

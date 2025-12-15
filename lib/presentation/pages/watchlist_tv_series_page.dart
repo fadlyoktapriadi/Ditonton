@@ -5,20 +5,20 @@ import 'package:ditonton/presentation/widgets/tv_series_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class WatchlistTvSeriesPage extends StatefulWidget {
+class WatchlistTVSeriesPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist-tv-series';
 
   @override
-  _WatchlistTvSeriesPageState createState() => _WatchlistTvSeriesPageState();
+  _WatchlistTVSeriesPageState createState() => _WatchlistTVSeriesPageState();
 }
 
-class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
+class _WatchlistTVSeriesPageState extends State<WatchlistTVSeriesPage>
     with RouteAware {
   @override
   void initState() {
     super.initState();
     Future.microtask(() =>
-        Provider.of<WatchlistTvSeriesNotifier>(context, listen: false)
+        Provider.of<WatchlistTVSeriesNotifier>(context, listen: false)
             .fetchWatchlistTvSeries());
   }
 
@@ -29,7 +29,7 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
   }
 
   void didPopNext() {
-    Provider.of<WatchlistTvSeriesNotifier>(context, listen: false)
+    Provider.of<WatchlistTVSeriesNotifier>(context, listen: false)
         .fetchWatchlistTvSeries();
   }
 
@@ -41,7 +41,7 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<WatchlistTvSeriesNotifier>(
+        child: Consumer<WatchlistTVSeriesNotifier>(
           builder: (context, data, child) {
             if (data.watchlistState == RequestState.Loading) {
               return Center(

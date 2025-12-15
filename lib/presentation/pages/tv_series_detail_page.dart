@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/common/state_enum.dart';
+import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:ditonton/domain/entities/tv_series_detail.dart';
 import 'package:ditonton/presentation/provider/tv_series_detail_notifier.dart';
@@ -9,17 +9,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
-class TvSeriesDetailPage extends StatefulWidget {
+class TVSeriesDetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/detail-tv-series';
 
   final int id;
-  TvSeriesDetailPage({required this.id});
+  TVSeriesDetailPage({required this.id});
 
   @override
-  _TvSeriesDetailPageState createState() => _TvSeriesDetailPageState();
+  _TVSeriesDetailPageState createState() => _TVSeriesDetailPageState();
 }
 
-class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
+class _TVSeriesDetailPageState extends State<TVSeriesDetailPage> {
   @override
   void initState() {
     super.initState();
@@ -60,7 +60,7 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
 
 class DetailContent extends StatelessWidget {
   final TvSeriesDetail tvSeriesDetail;
-  final List<TvSeries> recommendations;
+  final List<TVSeries> recommendations;
   final bool isAddedWatchlist;
 
   DetailContent(this.tvSeriesDetail, this.recommendations, this.isAddedWatchlist);
@@ -209,7 +209,7 @@ class DetailContent extends StatelessWidget {
                                             onTap: () {
                                               Navigator.pushReplacementNamed(
                                                 context,
-                                                TvSeriesDetailPage.ROUTE_NAME,
+                                                TVSeriesDetailPage.ROUTE_NAME,
                                                 arguments: movie.id,
                                               );
                                             },
@@ -290,16 +290,5 @@ class DetailContent extends StatelessWidget {
     }
 
     return result.substring(0, result.length - 2);
-  }
-
-  String _showDuration(int runtime) {
-    final int hours = runtime ~/ 60;
-    final int minutes = runtime % 60;
-
-    if (hours > 0) {
-      return '${hours}h ${minutes}m';
-    } else {
-      return '${minutes}m';
-    }
   }
 }

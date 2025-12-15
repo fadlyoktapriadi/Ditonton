@@ -4,7 +4,7 @@ import 'package:ditonton/domain/entities/tv_series_detail.dart';
 import 'package:ditonton/domain/repositories/tv_series_repository.dart';
 
 class SaveTvSeriesWatchlist {
-  final TvSeriesRepository repository;
+  final TVSeriesRepository repository;
 
   SaveTvSeriesWatchlist(this.repository);
 

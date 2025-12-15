@@ -1,18 +1,18 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:ditonton/common/exception.dart';
+import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/data/datasources/tv_series_local_data_source.dart';
 import 'package:ditonton/data/datasources/tv_series_remote_data_source.dart';
 import 'package:ditonton/data/models/tv_series_table.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
-import 'package:ditonton/common/exception.dart';
-import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/domain/entities/tv_series_detail.dart';
 import 'package:ditonton/domain/repositories/tv_series_repository.dart';
 
-class TvSeriesRepositoryImpl implements TvSeriesRepository {
-  final TvSeriesRemoteDataSource remoteDataSource;
-  final TvSeriesLocalDataSource localDataSource;
+class TvSeriesRepositoryImpl implements TVSeriesRepository {
+  final TVSeriesRemoteDataSource remoteDataSource;
+  final TVSeriesLocalDataSource localDataSource;
 
   TvSeriesRepositoryImpl({
     required this.remoteDataSource,
@@ -20,7 +20,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
   });
 
   @override
-  Future<Either<Failure, List<TvSeries>>> getNowPlayingTvSeries() async {
+  Future<Either<Failure, List<TVSeries>>> getNowPlayingTVSeries() async {
     try {
       final result = await remoteDataSource.getNowPlayingTvSeries();
       return Right(result.map((model) => model.toEntity()).toList());
@@ -32,7 +32,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
   }
 
   @override
-  Future<Either<Failure, List<TvSeries>>> getPopularTvSeries() async {
+  Future<Either<Failure, List<TVSeries>>> getPopularTvSeries() async {
     try {
       final result = await remoteDataSource.getPopularTvSeries();
       return Right(result.map((model) => model.toEntity()).toList());
@@ -44,7 +44,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
   }
 
   @override
-  Future<Either<Failure, List<TvSeries>>> getTopRatedTvSeries() async {
+  Future<Either<Failure, List<TVSeries>>> getTopRatedTvSeries() async {
     try {
       final result = await remoteDataSource.getTopRatedTvSeries();
       return Right(result.map((model) => model.toEntity()).toList());
@@ -68,7 +68,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
   }
 
   @override
-  Future<Either<Failure, List<TvSeries>>> getTvSeriesRecommendations(int id) async {
+  Future<Either<Failure, List<TVSeries>>> getTvSeriesRecommendations(int id) async {
     try {
       final result = await remoteDataSource.getTvSeriesRecommendations(id);
       return Right(result.map((model) => model.toEntity()).toList());
@@ -79,7 +79,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
     }
   }
   @override
-  Future<Either<Failure, List<TvSeries>>> searchTvSeries(String query) async {
+  Future<Either<Failure, List<TVSeries>>> searchTvSeries(String query) async {
     try {
       final result = await remoteDataSource.searchTvSeries(query);
       return Right(result.map((model) => model.toEntity()).toList());
@@ -94,7 +94,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
   Future<Either<Failure, String>> saveTvSeriesWatchlist(TvSeriesDetail tvSeries) async {
     try {
       final result =
-          await localDataSource.insertTvSeriesWatchlist(TvSeriesTable.fromEntity(tvSeries));
+          await localDataSource.insertTvSeriesWatchlist(TVSeriesTable.fromEntity(tvSeries));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
@@ -107,7 +107,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
   Future<Either<Failure, String>> removeTvSeriesWatchlist(TvSeriesDetail tvSeries) async {
     try {
       final result =
-          await localDataSource.removeTvSeriesWatchlist(TvSeriesTable.fromEntity(tvSeries));
+          await localDataSource.removeTvSeriesWatchlist(TVSeriesTable.fromEntity(tvSeries));
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
@@ -121,7 +121,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
   }
 
   @override
-  Future<Either<Failure, List<TvSeries>>> getWatchlistTvSeries() async {
+  Future<Either<Failure, List<TVSeries>>> getWatchlistTvSeries() async {
     final result = await localDataSource.getWatchlistTvSeries();
     return Right(result.map((data) => data.toEntity()).toList());
   }
