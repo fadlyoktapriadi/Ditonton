@@ -14,8 +14,6 @@ class TvSeriesDetail extends Equatable {
     required this.lastAirDate,
     required this.voteAverage,
     required this.voteCount,
-    // required this.numberOfEpisodes,
-    // required this.numberOfSeasons,
   });
 
   final bool adult;
@@ -30,13 +28,6 @@ class TvSeriesDetail extends Equatable {
   final double voteAverage;
   final int voteCount;
 
-  // final int numberOfEpisodes;
-  // final int numberOfSeasons;
-  // final List<int> episodeRunTime;
-  // List<Season> seasons;
-  // EpisodeSeries lastEpisodeToAir
-  // EpisodeSeries nextEpisodeToAir
-
   @override
   List<Object?> get props => [
     adult,
@@ -48,8 +39,6 @@ class TvSeriesDetail extends Equatable {
     posterPath,
     firstAirDate,
     lastAirDate,
-    // numberOfEpisodes,
-    // numberOfSeasons,
     voteAverage,
     voteCount,
   ];
