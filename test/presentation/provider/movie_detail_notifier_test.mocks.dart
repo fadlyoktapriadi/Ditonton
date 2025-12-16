@@ -116,7 +116,7 @@ class MockGetMovieRecommendations extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetWatchListStatus extends _i1.Mock
-    implements _i10.GetWatchListStatus {
+    implements _i10.GetWatchlistStatus {
   MockGetWatchListStatus() {
     _i1.throwOnMissingStub(this);
   }

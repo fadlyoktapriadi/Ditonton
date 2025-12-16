@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/presentation/bloc/movie/now_playing/now_playing_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/popular/popular_movie_bloc.dart';

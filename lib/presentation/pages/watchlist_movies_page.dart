@@ -18,8 +18,9 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        context.read<WatchlistMovieBloc>().add(FetchWatchlistMovieEvent()));
+    Future.microtask(
+      () => context.read<WatchlistMovieBloc>().add(FetchWatchlistMovieEvent()),
+    );
   }
 
   @override
@@ -35,14 +36,10 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Watchlist'),
-      ),
+      appBar: AppBar(title: Text('Watchlist')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child:
-
-        BlocBuilder<WatchlistMovieBloc, WatchlistMovieState>(
+        child: BlocBuilder<WatchlistMovieBloc, WatchlistMovieState>(
           builder: (context, state) {
             if (state is WatchlistMovieLoading) {
               return Center(child: CircularProgressIndicator());

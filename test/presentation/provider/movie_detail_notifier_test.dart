@@ -18,7 +18,7 @@ import 'movie_detail_notifier_test.mocks.dart';
 @GenerateMocks([
   GetMovieDetail,
   GetMovieRecommendations,
-  GetWatchListStatus,
+  GetWatchlistStatus,
   SaveWatchlist,
   RemoveWatchlist,
 ])

@@ -1,50 +1,52 @@
 import 'package:bloc/bloc.dart';
 import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/entities/movie_detail.dart';
-import 'package:ditonton/domain/usecases/get_movie_detail.dart';
-import 'package:ditonton/domain/usecases/get_movie_recommendations.dart';
+import 'package:ditonton/domain/entities/tv_series.dart';
+import 'package:ditonton/domain/entities/tv_series_detail.dart';
+import 'package:ditonton/domain/usecases/get_tv_series_detail.dart';
+import 'package:ditonton/domain/usecases/get_tv_series_recommendations.dart';
 import 'package:ditonton/domain/usecases/get_watchlist_status.dart';
-import 'package:ditonton/domain/usecases/remove_watchlist.dart';
-import 'package:ditonton/domain/usecases/save_watchlist.dart';
+import 'package:ditonton/domain/usecases/get_watchlist_tv_series.dart';
+import 'package:ditonton/domain/usecases/get_watchlist_tv_series_status.dart';
+import 'package:ditonton/domain/usecases/remove_watchlist_tv_series.dart';
+import 'package:ditonton/domain/usecases/save_watchlist_tv_series.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../domain/entities/movie.dart' show Movie;
+part 'detail_tv_series_event.dart';
 
-part 'detail_movie_event.dart';
+part 'detail_tv_series_state.dart';
 
-part 'detail_movie_state.dart';
-
-class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
+class TVSeriesDetailBloc
+    extends Bloc<TVSeriesDetailEvent, TVSeriesDetailState> {
   static const watchlistAddSuccessMessage = 'Added to Watchlist';
   static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
 
-  final GetMovieDetail getMovieDetail;
-  final GetMovieRecommendations getMovieRecommendations;
-  final GetWatchlistStatus getWatchListStatus;
-  final SaveWatchlist saveWatchlist;
-  final RemoveWatchlist removeWatchlist;
+  final GetTvSeriesDetail getTVSeriesDetail;
+  final GetTvSeriesRecommendations getTVSeriesRecommendations;
+  final GetWatchListTvSeriesStatus getWatchListStatus;
+  final SaveTvSeriesWatchlist saveWatchlist;
+  final RemoveTvSeriesWatchlist removeWatchlist;
 
-  MovieDetailBloc(
-    this.getMovieDetail,
-    this.getMovieRecommendations,
+  TVSeriesDetailBloc(
+    this.getTVSeriesDetail,
+    this.getTVSeriesRecommendations,
     this.getWatchListStatus,
     this.saveWatchlist,
     this.removeWatchlist,
-  ) : super(const MovieDetailState()) {
-    on<FetchMovieDetail>(_onFetchMovieDetail);
+  ) : super(const TVSeriesDetailState()) {
+    on<FetchTVSeriesDetail>(_onFetchTVSeriesDetail);
     on<AddToWatchlist>(_onAddToWatchlist);
     on<RemoveFromWatchlist>(_onRemoveFromWatchlist);
     on<LoadWatchlistStatus>(_onLoadWatchlistStatus);
   }
 
-  Future<void> _onFetchMovieDetail(
-    FetchMovieDetail event,
-    Emitter<MovieDetailState> emit,
+  Future<void> _onFetchTVSeriesDetail(
+    FetchTVSeriesDetail event,
+    Emitter<TVSeriesDetailState> emit,
   ) async {
-    emit(state.copyWith(movieState: RequestState.Loading));
+    emit(state.copyWith(tvSeriesState: RequestState.Loading));
 
-    final detailResult = await getMovieDetail.execute(event.id);
-    final recommendationResult = await getMovieRecommendations.execute(
+    final detailResult = await getTVSeriesDetail.execute(event.id);
+    final recommendationResult = await getTVSeriesRecommendations.execute(
       event.id,
     );
 
@@ -52,7 +54,7 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
       (failure) {
         emit(
           state.copyWith(
-            movieState: RequestState.Error,
+            tvSeriesState: RequestState.Error,
             message: failure.message,
           ),
         );
@@ -60,8 +62,8 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
       (movie) {
         emit(
           state.copyWith(
-            movie: movie,
-            movieState: RequestState.Loaded,
+            tvSeries: movie,
+            tvSeriesState: RequestState.Loaded,
             recommendationState: RequestState.Loading,
           ),
         );
@@ -79,7 +81,7 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
             emit(
               state.copyWith(
                 recommendationState: RequestState.Loaded,
-                movieRecommendations: movies,
+                tvSeriesRecommendations: movies,
               ),
             );
           },
@@ -90,9 +92,9 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
 
   Future<void> _onAddToWatchlist(
     AddToWatchlist event,
-    Emitter<MovieDetailState> emit,
+    Emitter<TVSeriesDetailState> emit,
   ) async {
-    final result = await saveWatchlist.execute(event.movie);
+    final result = await saveWatchlist.execute(event.tvSeries);
 
     await result.fold(
       (failure) async {
@@ -103,14 +105,14 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
       },
     );
 
-    add(LoadWatchlistStatus(event.movie.id));
+    add(LoadWatchlistStatus(event.tvSeries.id));
   }
 
   Future<void> _onRemoveFromWatchlist(
     RemoveFromWatchlist event,
-    Emitter<MovieDetailState> emit,
+    Emitter<TVSeriesDetailState> emit,
   ) async {
-    final result = await removeWatchlist.execute(event.movie);
+    final result = await removeWatchlist.execute(event.tvSeries);
 
     await result.fold(
       (failure) async {
@@ -121,12 +123,12 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
       },
     );
 
-    add(LoadWatchlistStatus(event.movie.id));
+    add(LoadWatchlistStatus(event.tvSeries.id));
   }
 
   Future<void> _onLoadWatchlistStatus(
     LoadWatchlistStatus event,
-    Emitter<MovieDetailState> emit,
+    Emitter<TVSeriesDetailState> emit,
   ) async {
     final result = await getWatchListStatus.execute(event.id);
     emit(state.copyWith(isAddedToWatchlist: result));

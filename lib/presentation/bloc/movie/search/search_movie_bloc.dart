@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
 
 part 'search_movie_event.dart';
+
 part 'search_movie_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
@@ -18,10 +19,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       final result = await _searchMovies.execute(query);
 
       result.fold(
-            (failure) {
+        (failure) {
           emit(SearchError(failure.message));
         },
-            (data) {
+        (data) {
           emit(SearchHasData(data));
         },
       );
@@ -31,5 +32,4 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   EventTransformer<T> debounce<T>(Duration duration) {
     return (events, mapper) => events.debounceTime(duration).flatMap(mapper);
   }
-
 }
