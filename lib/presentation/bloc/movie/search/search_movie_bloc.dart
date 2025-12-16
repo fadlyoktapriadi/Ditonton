@@ -4,8 +4,8 @@ import 'package:ditonton/domain/usecases/search_movies.dart';
 import 'package:equatable/equatable.dart';
 import 'package:rxdart/rxdart.dart';
 
-part 'search_event.dart';
-part 'search_state.dart';
+part 'search_movie_event.dart';
+part 'search_movie_state.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final SearchMovies _searchMovies;
