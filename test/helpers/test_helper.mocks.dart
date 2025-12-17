@@ -355,12 +355,12 @@ class MockMovieLocalDataSource extends _i1.Mock
           as _i7.Future<List<_i14.MovieTable>>);
 }
 
-/// A class which mocks [TvSeriesRepository].
+/// A class which mocks [TVSeriesRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTvSeriesRepository extends _i1.Mock
+class MockTVSeriesRepository extends _i1.Mock
     implements _i16.TVSeriesRepository {
-  MockTvSeriesRepository() {
+  MockTVSeriesRepository() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -368,12 +368,12 @@ class MockTvSeriesRepository extends _i1.Mock
   _i7.Future<_i2.Either<_i8.Failure, List<_i17.TVSeries>>>
   getNowPlayingTVSeries() =>
       (super.noSuchMethod(
-            Invocation.method(#getNowPlayingTvSeries, []),
+            Invocation.method(#getNowPlayingTVSeries, []),
             returnValue:
                 _i7.Future<_i2.Either<_i8.Failure, List<_i17.TVSeries>>>.value(
                   _FakeEither_0<_i8.Failure, List<_i17.TVSeries>>(
                     this,
-                    Invocation.method(#getNowPlayingTvSeries, []),
+                    Invocation.method(#getNowPlayingTVSeries, []),
                   ),
                 ),
           )
@@ -510,12 +510,12 @@ class MockTvSeriesRepository extends _i1.Mock
           as _i7.Future<_i2.Either<_i8.Failure, List<_i17.TVSeries>>>);
 }
 
-/// A class which mocks [TvSeriesLocalDataSource].
+/// A class which mocks [TVSeriesLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTvSeriesLocalDataSource extends _i1.Mock
+class MockTVSeriesLocalDataSource extends _i1.Mock
     implements _i19.TVSeriesLocalDataSource {
-  MockTvSeriesLocalDataSource() {
+  MockTVSeriesLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -548,7 +548,7 @@ class MockTvSeriesLocalDataSource extends _i1.Mock
   @override
   _i7.Future<_i20.TVSeriesTable?> getTvSeriesById(int? id) =>
       (super.noSuchMethod(
-            Invocation.method(#getTvSeriesMovieById, [id]),
+            Invocation.method(#getTvSeriesById, [id]),
             returnValue: _i7.Future<_i20.TVSeriesTable?>.value(),
           )
           as _i7.Future<_i20.TVSeriesTable?>);
@@ -564,12 +564,12 @@ class MockTvSeriesLocalDataSource extends _i1.Mock
           as _i7.Future<List<_i20.TVSeriesTable>>);
 }
 
-/// A class which mocks [TvSeriesRemoteDataSource].
+/// A class which mocks [TVSeriesRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTvSeriesRemoteDataSource extends _i1.Mock
+class MockTVSeriesRemoteDataSource extends _i1.Mock
     implements _i21.TVSeriesRemoteDataSource {
-  MockTvSeriesRemoteDataSource() {
+  MockTVSeriesRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 

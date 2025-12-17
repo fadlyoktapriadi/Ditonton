@@ -39,6 +39,18 @@ class MovieDetailState extends Equatable {
     );
   }
 
+  factory MovieDetailState.initial() {
+    return const MovieDetailState(
+      movie: null,
+      movieState: RequestState.Empty,
+      movieRecommendations: [],
+      recommendationState: RequestState.Empty,
+      message: '',
+      watchlistMessage: '',
+      isAddedToWatchlist: false,
+    );
+  }
+
   @override
   List<Object?> get props => [
     movieState,

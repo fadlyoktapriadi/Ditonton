@@ -1,27 +1,24 @@
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/domain/usecases/search_movies.dart';
-import 'package:ditonton/presentation/bloc/movie/search/search_movie_bloc.dart';
+import 'package:ditonton/domain/usecases/get_top_rated_movies.dart';
+import 'package:ditonton/presentation/bloc/movie/top_rated/top_rated_movie_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'search_bloc_test.mocks.dart';
+import 'top_rated_bloc_test.mocks.dart';
 
-@GenerateMocks([SearchMovies])
+@GenerateMocks([GetTopRatedMovies])
 void main() {
-  late SearchBloc searchBloc;
-  late MockSearchMovies mockSearchMovies;
+  late MockGetTopRatedMovies mockGetTopRatedMovies;
+  late TopRatedMovieBloc topRatedMoviesBloc;
 
   setUp(() {
-    mockSearchMovies = MockSearchMovies();
-    searchBloc = SearchBloc(mockSearchMovies);
-  });
-
-  test('initial state should be empty', () {
-    expect(searchBloc.state, SearchEmpty());
+    mockGetTopRatedMovies = MockGetTopRatedMovies();
+    topRatedMoviesBloc = TopRatedMovieBloc(mockGetTopRatedMovies);
   });
 
   final tMovieModel = Movie(
@@ -41,41 +38,43 @@ void main() {
     voteCount: 13507,
   );
   final tMovieList = <Movie>[tMovieModel];
-  final tQuery = 'spiderman';
 
-  blocTest<SearchBloc, SearchState>(
+  test('initial state should be empty', () {
+    expect(topRatedMoviesBloc.state, TopRatedMovieEmpty());
+  });
+
+  blocTest<TopRatedMovieBloc, TopRatedMovieState>(
     'Should emit [Loading, HasData] when data is gotten successfully',
     build: () {
-      when(mockSearchMovies.execute(tQuery))
+      when(mockGetTopRatedMovies.execute())
           .thenAnswer((_) async => Right(tMovieList));
-      return searchBloc;
+      return topRatedMoviesBloc;
+
     },
-    act: (bloc) => bloc.add(OnQueryChanged(tQuery)),
-    wait: const Duration(milliseconds: 500),
+    act: (bloc) => bloc.add(FetchTopRatedMovieEvent()),
     expect: () => [
-      SearchLoading(),
-      SearchHasData(tMovieList),
+      TopRatedMovieLoading(),
+      TopRatedMovieHasData(tMovieList),
     ],
     verify: (bloc) {
-      verify(mockSearchMovies.execute(tQuery));
+      verify(mockGetTopRatedMovies.execute());
     },
   );
 
-  blocTest<SearchBloc, SearchState>(
-    'Should emit [Loading, Error] when get search is unsuccessful',
+  blocTest<TopRatedMovieBloc, TopRatedMovieState>(
+    'Should emit [Loading, Error] when get TopRated movies is unsuccessful',
     build: () {
-      when(mockSearchMovies.execute(tQuery))
+      when(mockGetTopRatedMovies.execute())
           .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
-      return searchBloc;
+      return topRatedMoviesBloc;
     },
-    act: (bloc) => bloc.add(OnQueryChanged(tQuery)),
-    wait: const Duration(milliseconds: 500),
+    act: (bloc) => bloc.add(FetchTopRatedMovieEvent()),
     expect: () => [
-      SearchLoading(),
-      SearchError('Server Failure'),
+      TopRatedMovieLoading(),
+      TopRatedMovieError('Server Failure'),
     ],
     verify: (bloc) {
-      verify(mockSearchMovies.execute(tQuery));
+      verify(mockGetTopRatedMovies.execute());
     },
   );
 }
