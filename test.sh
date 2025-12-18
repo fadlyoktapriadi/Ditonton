@@ -21,6 +21,13 @@ where:
 runTests() {
   cd $1
   if [ -f "pubspec.yaml" ] && [ -d "test" ]; then
+    testFiles=$(find test -name "*_test.dart" 2>/dev/null | wc -l)
+    if [ $testFiles -eq 0 ]; then
+      echo "skipping $1 - no test files found"
+      cd - >/dev/null
+      return
+    fi
+
     echo "running tests in $1"
     flutter pub get
 
