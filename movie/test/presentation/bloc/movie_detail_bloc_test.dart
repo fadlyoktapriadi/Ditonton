@@ -8,7 +8,7 @@ import 'package:movie/domain/usecase/get_movie_recommendations.dart';
 import 'package:movie/domain/usecase/get_watchlist_status.dart';
 import 'package:movie/domain/usecase/remove_watchlist.dart';
 import 'package:movie/domain/usecase/save_watchlist.dart';
-import 'package:movie/bloc/detail/detail_movie_bloc.dart';
+import 'package:movie/presentation/bloc/detail/detail_movie_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

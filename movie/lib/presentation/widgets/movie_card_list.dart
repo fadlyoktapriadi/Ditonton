@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/common/constants.dart';
-import 'package:tv_series/domain/entities/tv_series.dart';
-import 'package:tv_series/presentation/pages/tv_series_detail_page.dart';
 import 'package:flutter/material.dart';
+import 'package:movie/domain/entities/movie.dart';
+import 'package:movie/presentation/pages/movie_detail_page.dart';
 
-class TvSeriesCard extends StatelessWidget {
-  final TVSeries tvSeries;
+class MovieCard extends StatelessWidget {
+  final Movie movie;
 
-  TvSeriesCard(this.tvSeries);
+  MovieCard(this.movie);
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +17,8 @@ class TvSeriesCard extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(
             context,
-            TVSeriesDetailPage.ROUTE_NAME,
-            arguments: tvSeries.id,
+            MovieDetailPage.ROUTE_NAME,
+            arguments: movie.id,
           );
         },
         child: Stack(
@@ -35,14 +35,14 @@ class TvSeriesCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      tvSeries.name ?? '-',
+                      movie.title ?? '-',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
                     SizedBox(height: 16),
                     Text(
-                      tvSeries.overview ?? '-',
+                      movie.overview ?? '-',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -58,7 +58,7 @@ class TvSeriesCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(8)),
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${tvSeries.posterPath}',
+                  imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
                   width: 80,
                   placeholder: (context, url) => Center(
                     child: CircularProgressIndicator(),

@@ -1,5 +1,4 @@
-import 'package:core/data/models/movie_table.dart';
-import 'package:core/data/models/tv_series_table.dart';
+import 'package:movie/data/models/movie_table.dart';
 import 'package:movie/domain/entities/genre.dart';
 import 'package:movie/domain/entities/movie.dart';
 import 'package:movie/domain/entities/movie_detail.dart';
@@ -57,19 +56,5 @@ final testMovieMap = {
   'overview': 'overview',
   'posterPath': 'posterPath',
   'title': 'title',
-};
-
-final testTvSeriesTable = TVSeriesTable(
-  id: 1,
-  name: 'name',
-  posterPath: 'posterPath',
-  overview: 'overview',
-);
-
-final testTvSeriesMap = {
-  'id_series': 1,
-  'overview': 'overview',
-  'posterPath': 'posterPath',
-  'name': 'name',
 };
 

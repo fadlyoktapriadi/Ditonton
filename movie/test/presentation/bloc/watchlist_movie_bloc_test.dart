@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:core/common/failure.dart';
 import 'package:movie/domain/entities/movie.dart';
 import 'package:movie/domain/usecase/get_watchlist_movies.dart';
-import 'package:movie/bloc/watchlist/watchlist_movie_bloc.dart';
+import 'package:movie/presentation/bloc/watchlist/watchlist_movie_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
