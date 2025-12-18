@@ -2,6 +2,7 @@ import 'package:core/common/constants.dart';
 import 'package:core/common/utils.dart';
 import 'package:core/common/http_ssl_pinning.dart';
 import 'package:ditonton/injection.dart' as di;
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:tv_series/bloc/detail/detail_tv_series_bloc.dart';
 import 'package:tv_series/bloc/now_playing/now_playing_tv_series_bloc.dart';
 import 'package:tv_series/bloc/popular/popular_tv_series_bloc.dart';
@@ -47,6 +48,10 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+  static FirebaseAnalyticsObserver observer =
+  FirebaseAnalyticsObserver(analytics: analytics);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
