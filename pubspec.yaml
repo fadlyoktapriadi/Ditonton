@@ -30,9 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   http: ^1.2.2
-  provider: ^6.1.2
   dartz: ^0.10.1
   equatable: ^2.0.5
   google_fonts: ^6.2.1
@@ -43,10 +41,17 @@ dependencies:
   path_provider: ^2.1.4
   flutter_bloc: ^9.1.1
   rxdart: ^0.28.0
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  firebase_core: ^4.3.0
+  firebase_crashlytics: ^5.0.6
   cupertino_icons: ^1.0.8
+
+  core:
+    path: core
+  movie:
+    path: movie
+  tv_series:
+    path: tv_series
+
 
 dev_dependencies:
   mockito: ^5.0.8
@@ -74,6 +79,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - certificates/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

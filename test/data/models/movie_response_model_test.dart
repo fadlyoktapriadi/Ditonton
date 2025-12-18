@@ -25,7 +25,7 @@ void main() {
   final tMovieResponseModel =
       MovieResponse(movieList: <MovieModel>[tMovieModel]);
   group('fromJson', () {
-    test('should return a valid model from JSON', () async {
+    test('should return a valid entities from JSON', () async {
       // arrange
       final Map<String, dynamic> jsonMap =
           json.decode(readJson('dummy_data/now_playing.json'));

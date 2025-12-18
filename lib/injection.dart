@@ -1,47 +1,48 @@
-import 'package:ditonton/data/datasources/db/database_helper.dart';
-import 'package:ditonton/data/datasources/movie_local_data_source.dart';
-import 'package:ditonton/data/datasources/movie_remote_data_source.dart';
-import 'package:ditonton/data/datasources/tv_series_local_data_source.dart';
-import 'package:ditonton/data/datasources/tv_series_remote_data_source.dart';
-import 'package:ditonton/data/repositories/movie_repository_impl.dart';
-import 'package:ditonton/data/repositories/tv_series_repository_impl.dart';
-import 'package:ditonton/domain/repositories/movie_repository.dart';
-import 'package:ditonton/domain/repositories/tv_series_repository.dart';
-import 'package:ditonton/domain/usecases/get_movie_detail.dart';
-import 'package:ditonton/domain/usecases/get_movie_recommendations.dart';
-import 'package:ditonton/domain/usecases/get_now_playing_movies.dart';
-import 'package:ditonton/domain/usecases/get_now_playing_tv_series.dart';
-import 'package:ditonton/domain/usecases/get_popular_movies.dart';
-import 'package:ditonton/domain/usecases/get_popular_tv_series.dart';
-import 'package:ditonton/domain/usecases/get_top_rated_movies.dart';
-import 'package:ditonton/domain/usecases/get_top_rated_tv_series.dart';
-import 'package:ditonton/domain/usecases/get_tv_series_detail.dart';
-import 'package:ditonton/domain/usecases/get_tv_series_recommendations.dart';
-import 'package:ditonton/domain/usecases/get_watchlist_movies.dart';
-import 'package:ditonton/domain/usecases/get_watchlist_status.dart';
-import 'package:ditonton/domain/usecases/get_watchlist_tv_series.dart';
-import 'package:ditonton/domain/usecases/get_watchlist_tv_series_status.dart';
-import 'package:ditonton/domain/usecases/remove_watchlist.dart';
-import 'package:ditonton/domain/usecases/remove_watchlist_tv_series.dart';
-import 'package:ditonton/domain/usecases/save_watchlist.dart';
-import 'package:ditonton/domain/usecases/save_watchlist_tv_series.dart';
-import 'package:ditonton/domain/usecases/search_movies.dart';
-import 'package:ditonton/presentation/bloc/movie/detail/detail_movie_bloc.dart';
-import 'package:ditonton/presentation/bloc/movie/now_playing/now_playing_movie_bloc.dart';
-import 'package:ditonton/presentation/bloc/movie/popular/popular_movie_bloc.dart';
-import 'package:ditonton/presentation/bloc/movie/search/search_movie_bloc.dart';
-import 'package:ditonton/presentation/bloc/movie/top_rated/top_rated_movie_bloc.dart';
-import 'package:ditonton/presentation/bloc/movie/watchlist/watchlist_movie_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_series/detail/detail_tv_series_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_series/now_playing/now_playing_tv_series_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_series/popular/popular_tv_series_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_series/search/search_tv_series_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_series/top_rated/top_rated_tv_series_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_series/watchlist/watchlist_tv_series_bloc.dart';
+import 'package:core/common/http_ssl_pinning.dart';
+import 'package:core/data/datasources/local/db/database_helper.dart';
+import 'package:core/data/datasources/local/movie_local_data_source.dart';
+import 'package:core/data/datasources/remote/movie_remote_data_source.dart';
+import 'package:core/data/datasources/local/tv_series_local_data_source.dart';
+import 'package:core/data/datasources/remote/tv_series_remote_data_source.dart';
+import 'package:core/data/repositories/movie_repository_impl.dart';
+import 'package:core/data/repositories/tv_series_repository_impl.dart';
+import 'package:movie/bloc/now_playing/now_playing_movie_bloc.dart';
+import 'package:movie/bloc/popular/popular_movie_bloc.dart';
+import 'package:movie/bloc/top_rated/top_rated_movie_bloc.dart';
+import 'package:movie/bloc/search/search_movie_bloc.dart';
+import 'package:movie/bloc/detail/detail_movie_bloc.dart';
+import 'package:movie/bloc/watchlist/watchlist_movie_bloc.dart';
+import 'package:movie/domain/repository/movie_repository.dart';
+import 'package:movie/domain/usecase/get_movie_detail.dart';
+import 'package:movie/domain/usecase/get_movie_recommendations.dart';
+import 'package:movie/domain/usecase/get_now_playing_movies.dart';
+import 'package:movie/domain/usecase/get_popular_movies.dart';
+import 'package:movie/domain/usecase/get_top_rated_movies.dart';
+import 'package:movie/domain/usecase/get_watchlist_status.dart';
+import 'package:tv_series/domain/usecase/get_watchlist_tv_series.dart';
+import 'package:tv_series/domain/repository/tv_series_repository.dart';
+import 'package:tv_series/domain/usecase/get_now_playing_tv_series.dart';
+import 'package:tv_series/domain/usecase/get_popular_tv_series.dart';
+import 'package:tv_series/domain/usecase/get_top_rated_tv_series.dart';
+import 'package:tv_series/domain/usecase/get_tv_series_detail.dart';
+import 'package:tv_series/domain/usecase/get_tv_series_recommendations.dart';
+import 'package:tv_series/domain/usecase/get_watchlist_tv_series_status.dart';
+import 'package:tv_series/domain/usecase/remove_watchlist_tv_series.dart';
+import 'package:tv_series/domain/usecase/save_watchlist_tv_series.dart';
+import 'package:tv_series/bloc/detail/detail_tv_series_bloc.dart';
+import 'package:tv_series/bloc/now_playing/now_playing_tv_series_bloc.dart';
+import 'package:tv_series/bloc/popular/popular_tv_series_bloc.dart';
+import 'package:tv_series/bloc/search/search_tv_series_bloc.dart';
+import 'package:tv_series/bloc/top_rated/top_rated_tv_series_bloc.dart';
+import 'package:tv_series/bloc/watchlist/watchlist_tv_series_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:movie/domain/usecase/get_watchlist_movies.dart';
+import 'package:movie/domain/usecase/remove_watchlist.dart';
+import 'package:movie/domain/usecase/save_watchlist.dart';
+import 'package:movie/domain/usecase/search_movies.dart';
+import 'package:tv_series/domain/usecase/search_tv_series.dart';
 
-import 'domain/usecases/search_tv_series.dart';
 
 final locator = GetIt.instance;
 
@@ -116,6 +117,7 @@ void init() {
   // helper
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
-  // external
-  locator.registerLazySingleton(() => http.Client());
+  // External
+  locator.registerLazySingleton(() => HttpSSLPinning.client);
+
 }

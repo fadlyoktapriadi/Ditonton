@@ -3,7 +3,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/domain/usecases/get_top_rated_movies.dart';
+import 'package:movie/domain/usecase/get_top_rated_movies.dart';
 import 'package:ditonton/presentation/bloc/movie/top_rated/top_rated_movie_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

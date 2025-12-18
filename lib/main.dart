@@ -1,38 +1,47 @@
-import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/utils.dart';
+import 'package:core/common/constants.dart';
+import 'package:core/common/utils.dart';
+import 'package:core/common/http_ssl_pinning.dart';
 import 'package:ditonton/injection.dart' as di;
-import 'package:ditonton/presentation/bloc/movie/detail/detail_movie_bloc.dart';
-import 'package:ditonton/presentation/bloc/movie/now_playing/now_playing_movie_bloc.dart';
-import 'package:ditonton/presentation/bloc/movie/popular/popular_movie_bloc.dart';
-import 'package:ditonton/presentation/bloc/movie/search/search_movie_bloc.dart';
-import 'package:ditonton/presentation/bloc/movie/top_rated/top_rated_movie_bloc.dart';
-import 'package:ditonton/presentation/bloc/movie/watchlist/watchlist_movie_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_series/detail/detail_tv_series_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_series/now_playing/now_playing_tv_series_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_series/popular/popular_tv_series_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_series/search/search_tv_series_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_series/top_rated/top_rated_tv_series_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_series/watchlist/watchlist_tv_series_bloc.dart';
-import 'package:ditonton/presentation/pages/about_page.dart';
-import 'package:ditonton/presentation/pages/home_movie_page.dart';
-import 'package:ditonton/presentation/pages/movie_detail_page.dart';
-import 'package:ditonton/presentation/pages/now_playing_tv_series_page.dart';
-import 'package:ditonton/presentation/pages/popular_movies_page.dart';
-import 'package:ditonton/presentation/pages/popular_tv_series_page.dart';
-import 'package:ditonton/presentation/pages/search_page.dart';
-import 'package:ditonton/presentation/pages/search_tv_series_page.dart';
-import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
-import 'package:ditonton/presentation/pages/top_rated_tv_series_page.dart';
-import 'package:ditonton/presentation/pages/tv_series_detail_page.dart';
-import 'package:ditonton/presentation/pages/tv_series_page.dart';
-import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
-import 'package:ditonton/presentation/pages/watchlist_tv_series_page.dart';
+import 'package:tv_series/bloc/detail/detail_tv_series_bloc.dart';
+import 'package:tv_series/bloc/now_playing/now_playing_tv_series_bloc.dart';
+import 'package:tv_series/bloc/popular/popular_tv_series_bloc.dart';
+import 'package:tv_series/bloc/search/search_tv_series_bloc.dart';
+import 'package:tv_series/bloc/top_rated/top_rated_tv_series_bloc.dart';
+import 'package:tv_series/bloc/watchlist/watchlist_tv_series_bloc.dart';
+import 'package:core/pages/about_page.dart';
+import 'package:movie/presentation/home_movie_page.dart';
+import 'package:movie/presentation/popular_movies_page.dart';
+import 'package:movie/presentation/search_page.dart';
+import 'package:movie/presentation/top_rated_movies_page.dart';
+import 'package:movie/presentation/movie_detail_page.dart';
+import 'package:movie/bloc/detail/detail_movie_bloc.dart';
+import 'package:movie/bloc/now_playing/now_playing_movie_bloc.dart';
+import 'package:movie/bloc/popular/popular_movie_bloc.dart';
+import 'package:movie/bloc/search/search_movie_bloc.dart';
+import 'package:movie/bloc/top_rated/top_rated_movie_bloc.dart';
+import 'package:movie/presentation/watchlist_movies_page.dart';
+import 'package:tv_series/presentation/now_playing_tv_series_page.dart';
+import 'package:tv_series/presentation/popular_tv_series_page.dart';
+import 'package:tv_series/presentation/search_tv_series_page.dart';
+import 'package:tv_series/presentation/top_rated_tv_series_page.dart';
+import 'package:tv_series/presentation/tv_series_detail_page.dart';
+import 'package:tv_series/presentation/tv_series_page.dart';
+import 'package:tv_series/presentation/watchlist_tv_series_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie/bloc/watchlist/watchlist_movie_bloc.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HttpSSLPinning.init();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   di.init();
   runApp(MyApp());
 }
