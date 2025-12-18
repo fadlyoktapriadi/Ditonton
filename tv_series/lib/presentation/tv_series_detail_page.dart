@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/common/constants.dart';
 import 'package:core/common/state_enum.dart';
-import 'package:tv_series/domain/entities/genre.dart';
+import 'package:movie/domain/entities/genre.dart';
 import 'package:tv_series/domain/entities/tv_series.dart';
 import 'package:tv_series/domain/entities/tv_series_detail.dart';
 import 'package:tv_series/bloc/detail/detail_tv_series_bloc.dart';
@@ -143,7 +143,7 @@ class DetailContent extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            // Text(_showGenres(tvSeriesDetail.genres)),
+                            Text(_showGenres(tvSeriesDetail.genres)),
                             Row(
                               children: [
                                 RatingBarIndicator(

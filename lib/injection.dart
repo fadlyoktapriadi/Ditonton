@@ -36,7 +36,6 @@ import 'package:tv_series/bloc/search/search_tv_series_bloc.dart';
 import 'package:tv_series/bloc/top_rated/top_rated_tv_series_bloc.dart';
 import 'package:tv_series/bloc/watchlist/watchlist_tv_series_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:http/http.dart' as http;
 import 'package:movie/domain/usecase/get_watchlist_movies.dart';
 import 'package:movie/domain/usecase/remove_watchlist.dart';
 import 'package:movie/domain/usecase/save_watchlist.dart';

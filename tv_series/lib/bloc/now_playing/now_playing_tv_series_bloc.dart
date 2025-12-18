@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:tv_series/domain/entities/tv_series.dart';
 import 'package:tv_series/domain/usecase/get_now_playing_tv_series.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 part 'now_playing_tv_series_event.dart';
 

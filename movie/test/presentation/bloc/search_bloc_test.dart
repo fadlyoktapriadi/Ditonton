@@ -1,9 +1,9 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/domain/usecases/search_movies.dart';
-import 'package:ditonton/presentation/bloc/movie/search/search_movie_bloc.dart';
+import 'package:core/common/failure.dart';
+import 'package:movie/domain/entities/movie.dart';
+import 'package:movie/domain/usecase/search_movies.dart';
+import 'package:movie/bloc/search/search_movie_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
