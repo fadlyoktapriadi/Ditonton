@@ -8,8 +8,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 
-import '../../../../../movie/test/json_reader.dart';
-import '../../../../../movie/test/helpers/test_helper.mocks.dart';
+import '../../../helpers/test_helper.mocks.dart';
+import '../../../json_reader.dart';
+
 
 void main() {
   const API_KEY = 'api_key=2174d146bb9c0eab47529b2e77d6b526';
@@ -28,7 +29,7 @@ void main() {
             json.decode(readJson('dummy_data/now_playing_tv_series.json')))
         .tvSeriesList;
 
-    test('should return list of Movie Model when the response code is 200',
+    test('should return list of TV Series Model when the response code is 200',
         () async {
       // arrange
       when(mockHttpClient
@@ -147,7 +148,7 @@ void main() {
         .tvSeriesList;
     final tId = 1;
 
-    test('should return list of Movie Model when the response code is 200',
+    test('should return list of TV Series Model when the response code is 200',
         () async {
       // arrange
       when(mockHttpClient
@@ -179,7 +180,7 @@ void main() {
         .tvSeriesList;
     final tQuery = 'Dirty Linen';
 
-    test('should return list of movies when response code is 200', () async {
+    test('should return list of TV Series when response code is 200', () async {
       // arrange
       when(mockHttpClient
               .get(Uri.parse('$BASE_URL/search/tv?$API_KEY&query=$tQuery')))
